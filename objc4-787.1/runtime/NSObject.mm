@@ -1697,11 +1697,19 @@ _objc_rootRelease(id obj)
 
 // Call [cls alloc] or [cls allocWithZone:nil], with appropriate 
 // shortcutting optimizations.
+
+/* 内联函数
+ * C语言中，如果一些函数被频繁调用，不断地有函数入栈，即函数栈，会造成栈空间或栈内存的大量消耗。
+ * alaways_inline强制内联, 单独的inline是否内联由编译做决定
+ */
 static ALWAYS_INLINE id
 callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
 {
+    // 如果Objective-C 2.0
 #if __OBJC2__
+    /// checkNill && !cls直接返回nil
     if (slowpath(checkNil && !cls)) return nil;
+    /// 判断是否有自定义的 allocWithZone方法吧
     if (fastpath(!cls->ISA()->hasCustomAWZ())) {
         return _objc_rootAllocWithZone(cls, nil);
     }

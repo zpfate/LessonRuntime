@@ -160,6 +160,8 @@ objc_object::isExtTaggedPointer()
 
 #if SUPPORT_NONPOINTER_ISA
 
+/// ::表示域操作符
+
 inline Class 
 objc_object::ISA() 
 {

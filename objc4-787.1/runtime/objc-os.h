@@ -148,7 +148,10 @@ void vsyslog(int, const char *, va_list) UNAVAILABLE_ATTRIBUTE;
 #define ALWAYS_INLINE inline __attribute__((always_inline))
 #define NEVER_INLINE __attribute__((noinline))
 
+///  long __builtin_expect(long exp, long c)用于做分支预测
+/// fastpath表示 bool(x)为1的概率很大
 #define fastpath(x) (__builtin_expect(bool(x), 1))
+/// slowpath表示 bool(x)为0的概率很大
 #define slowpath(x) (__builtin_expect(bool(x), 0))
 
 

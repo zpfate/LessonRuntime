@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Person.h"
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
@@ -17,4 +18,8 @@ int main(int argc, const char * argv[]) {
         
     }
     return 0;
+}
+
+void inline __attribute__((always_inline)) printLog() {
+    
 }
