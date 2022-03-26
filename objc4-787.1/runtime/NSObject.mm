@@ -2030,18 +2030,22 @@ __attribute__((objc_nonlazy_class))
     return self->superclass;
 }
 
+// 获取当前类的父类
 - (Class)superclass {
     return [self class]->superclass;
 }
 
+// 当前类isa指针指向的是不是cls
 + (BOOL)isMemberOfClass:(Class)cls {
     return self->ISA() == cls;
 }
 
+// 是不是当前类
 - (BOOL)isMemberOfClass:(Class)cls {
     return [self class] == cls;
 }
 
+// 当前类isa指向的是不是cls或者cls的子类
 + (BOOL)isKindOfClass:(Class)cls {
     for (Class tcls = self->ISA(); tcls; tcls = tcls->superclass) {
         if (tcls == cls) return YES;
@@ -2049,6 +2053,7 @@ __attribute__((objc_nonlazy_class))
     return NO;
 }
 
+// 是不是当前类的子类
 - (BOOL)isKindOfClass:(Class)cls {
     for (Class tcls = [self class]; tcls; tcls = tcls->superclass) {
         if (tcls == cls) return YES;

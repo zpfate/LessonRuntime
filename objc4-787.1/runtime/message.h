@@ -41,7 +41,7 @@ struct objc_super {
     /* For compatibility with old objc-runtime.h header */
     __unsafe_unretained _Nonnull Class class;
 #else
-    // 决定从哪里开始寻找方法的实现
+    // 从父类开始寻找方法的实现
     __unsafe_unretained _Nonnull Class super_class;
 #endif
     /* super_class is the first class to search */
