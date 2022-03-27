@@ -2045,7 +2045,7 @@ __attribute__((objc_nonlazy_class))
     return [self class] == cls;
 }
 
-// 当前类isa指向的是不是cls或者cls的子类
+// 当前类的元类指向的是不是cls或者cls的子类
 + (BOOL)isKindOfClass:(Class)cls {
     for (Class tcls = self->ISA(); tcls; tcls = tcls->superclass) {
         if (tcls == cls) return YES;
