@@ -3148,10 +3148,11 @@ load_images(const char *path __unused, const struct mach_header *mh)
     // Discover load methods
     {
         mutex_locker_t lock2(runtimeLock);
+        // 准备load方法
         prepare_load_methods((const headerType *)mh);
     }
 
-    // Call +load methods (without runtimeLock - re-entrant)
+    // Call +load methods (without runtimeLock - re-entrant) 调用load方法
     call_load_methods();
 }
 
