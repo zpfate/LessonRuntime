@@ -314,6 +314,7 @@ weak_entry_for_referent(weak_table_t *weak_table, objc_object *referent)
 
     if (!weak_entries) return nil;
 
+    // 索引
     size_t begin = hash_pointer(referent) & weak_table->mask;
     size_t index = begin;
     size_t hash_displacement = 0;

@@ -87,9 +87,11 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
     }
 
     if (!atomic) {
+        // 是nonatomic的情况
         oldValue = *slot;
         *slot = newValue;
     } else {
+        // atomic的情况下  加锁
         spinlock_t& slotlock = PropertyLocks[slot];
         slotlock.lock();
         oldValue = *slot;

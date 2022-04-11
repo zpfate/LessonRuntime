@@ -1223,7 +1223,9 @@ objc_object::clearDeallocating_slow()
 
     SideTable& table = SideTables()[this];
     table.lock();
+    // 弱引用
     if (isa.weakly_referenced) {
+        // 弱引用表移除
         weak_clear_no_lock(&table.weak_table, (id)this);
     }
     if (isa.has_sidetable_rc) {

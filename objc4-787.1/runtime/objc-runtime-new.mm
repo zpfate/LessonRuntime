@@ -7741,9 +7741,10 @@ void *objc_destructInstance(id obj)
         bool assoc = obj->hasAssociatedObjects();
 
         // This order is important.
-        if (cxx) object_cxxDestruct(obj);
-        if (assoc) _object_remove_assocations(obj);
-        obj->clearDeallocating();
+        if (cxx) object_cxxDestruct(obj); // 清除成员变量
+        if (assoc) _object_remove_assocations(obj); // 移除关联对象
+        obj->clearDeallocating(); // 将指向当前对象的弱指针置为nil
+        
     }
 
     return obj;
